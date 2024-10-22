@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const List = (props) => {
     const [items, setItems] = useState(() => {
@@ -33,12 +35,14 @@ const List = (props) => {
             {items.map(item => (
                 <ListItem id={item.id} text={item.text} key={item.id} delete={deleteItem}/>
             ))}
-            <input id="itemInput" onSubmit={addItem} type="text" className="add-item" placeholder="add an item"></input>
-            <button onClick={() => {
-                const el = document.getElementById("itemInput")
-                addItem(el.value)
-                el.value = "";
-                }}>Add</button>
+            <div className="input">
+                <input id="itemInput" onSubmit={addItem} type="text" className="add-item" placeholder="add an item"></input>
+                <button className="add-item-button" onClick={() => {
+                    const el = document.getElementById("itemInput")
+                    if (el.value != "") addItem(el.value);
+                    el.value = "";
+                    }}><FontAwesomeIcon icon={faPlus}/></button>
+            </div>
         </div>
     );
 }
