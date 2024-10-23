@@ -46,11 +46,12 @@ const List = (props) => {
         <div>
             <h2>{name}</h2>
             <h3>In progress</h3>
+            {items.filter(item => !item.completed).length === 0 && "No in progress todos"}
             {items.filter(item => !item.completed).map(item => (
                 <ListItem id={item.id} text={item.text} key={item.id} completed={item.completed} complete={complete} delete={deleteItem}/>
             ))}
             <div className="input">
-                <input id="itemInput" type="text" className="add-item" placeholder="add an item"></input>
+                <input id="itemInput" type="text" className="add-item" placeholder="Add an item"></input>
                 <button className="add-item-button" onClick={() => {
                     const el = document.getElementById("itemInput")
                     if (el.value != "") addItem(el.value);
@@ -60,6 +61,7 @@ const List = (props) => {
             <hr/>
             <div className="completed-items">
                 <h3>Completed</h3>
+                {items.filter(item => item.completed).length === 0 && "No completed todos"}
                 {items.filter(item => item.completed).map(item => (
                     <ListItem id={item.id} text={item.text} key={item.id} completed={item.completed} complete={complete} delete={deleteItem}/>
                 ))}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import List from "./List"
-import ListItem from "./ListItem"
+import Sidebar from "./Sidebar"
 
 function App() {
   const [display, setDisplay] = useState(1)
@@ -28,7 +28,14 @@ function App() {
 
   return (
     <>
-      <List />
+      <div className="wrapper">
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+        <div className="main">
+          <List />
+        </div>
+      </div>
     </>
   )
 }
