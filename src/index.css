@@ -1,7 +1,7 @@
 body {
     font-family: arial, sans-serif;
     color: rgb(19, 19, 19);
-    background-color: rgb(167, 167, 167);
+    background-color: #ffffff;
     font-size: x-large;
     margin: 0;
 }
@@ -16,17 +16,16 @@ hr {
 
 .wrapper {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 17% 83%;
     height: 100vh;
 }
 
 .sidebar {
     grid-column: 1 / 2;
-    background-color: rgb(151, 151, 151);
+    background-color: #616161b4;
     border-right: 4px solid rgba(19, 19, 19, 0.904);
     display: flex;
     flex-direction: column;
-    padding-left: 1rem;
     overflow-y: auto;
 }
 
@@ -49,15 +48,16 @@ hr {
 
 .list-top button {
     font-size: large;
+    background-color: #ffffff;
     margin-top: 1.5rem;
     height: 4rem;
-    border: 5px solid gray;
+    border: 5px solid rgb(104, 104, 104);
     border-radius: 10px;
 }
 
 .list-top button:hover {
     cursor: pointer;
-    background-color: rgb(216, 216, 216);
+    background-color: rgba(255, 255, 255, 0.54);
 }
 
 .list-top input {
@@ -72,9 +72,9 @@ hr {
 .list-item {
     display: flex;
     flex-direction: row;
-    border: 4px solid rgb(182, 88, 11);
+    border: 4px solid rgba(182, 88, 11, 0.788);
     border-radius: 5px;
-    background-color: rgba(218, 111, 24, 0.822);
+    background-color: rgba(233, 120, 27, 0.692);
     padding: 0.5rem;
     gap: 0.75rem;
     margin-bottom: 0.5rem;
@@ -106,13 +106,13 @@ hr {
     border-radius: 5px;
     border: none;
     color: rgb(202, 202, 202);
-    background-color: rgb(179, 83, 4);
+    background-color: rgba(179, 83, 4, 0.753);
 }
 
 .list-item .delete-button:hover {
     color: hsl(0, 100%, 50%);
     cursor: pointer;
-    background-color: rgb(161, 66, 3);
+    background-color: rgba(209, 90, 11, 0.767);
 }
 
 .input {
@@ -146,9 +146,9 @@ hr {
 .completed-items .list-item {
     display: flex;
     flex-direction: row;
-    border: 4px solid rgb(126, 51, 8);
+    border: 4px solid rgba(153, 64, 12, 0.74);
     border-radius: 5px;
-    background-color: rgb(163, 74, 14);
+    background-color: rgba(175, 81, 18, 0.664);
     padding: 0.5rem;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
@@ -174,7 +174,8 @@ hr {
 }
 
 .add-list {
-    border: 5px solid gray;
+    border: 5px solid rgb(102, 102, 102);
+    background-color: #fcfcfc;
     border-radius: 10px;
     padding: 1rem;
     font-size: larger;
@@ -186,7 +187,7 @@ hr {
 
 .add-list:hover {
     cursor: pointer;
-    background-color: rgb(228, 228, 228);
+    background-color: rgba(255, 255, 255, 0.514);
 }
 
 .list-picker {
@@ -198,6 +199,7 @@ hr {
     border: none;
     background-color: transparent;
     font-size: larger;
+    margin-left: 1rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-right: 3rem;
@@ -208,7 +210,7 @@ hr {
 }
 
 .list-picker .delete-button {
-    background-color: rgb(141, 141, 141);
+    background-color: rgb(107, 107, 107);
     color: rgb(202, 202, 202);
     border-radius: 5px;
     max-height: 30px;
