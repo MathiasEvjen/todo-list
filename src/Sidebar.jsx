@@ -1,4 +1,4 @@
-import ListPick from "./ListPick";
+import ListPick from "./ListPicker";
 
 const Sidebar = (props) => {
     return(
@@ -9,6 +9,7 @@ const Sidebar = (props) => {
                     <ListPick id={list.id} key={list.id} displayList={props.displayList}/>
                 )}
             </div>
+            <div className="sidebar-bottom"></div>
         </div>
     );
 }

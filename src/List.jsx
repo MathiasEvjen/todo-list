@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const List = (props) => {
-    const [name, setName] = useState("List 1")
+    const [name, setName] = useState(`List ${props.id}`)  // State variabel for å holde listas navn
+    
+    // State variabel for å holde listens gjøremål som hentes fra localstorage
     const [items, setItems] = useState(() => {
         const localValue = localStorage.getItem(`ITEMS${props.id}`)
         if (localValue == null) return []
@@ -12,10 +14,12 @@ const List = (props) => {
         return JSON.parse(localValue)
     })
 
+    // Lagrer listens gjøremål i local storage
     useEffect(() => {
         localStorage.setItem(`ITEMS${props.id}`, JSON.stringify(items))
     }, [items])
 
+    // Oppretter nytt gjøremål og legger i items-variabel
     function addItem(text) {
         setItems(existingItems => {
             return [
@@ -24,6 +28,7 @@ const List = (props) => {
         })
     }
 
+    // Setter et spesifikt gjøremål som fullført
     function complete(id, completed) {
         setItems(existingItems => {
             return existingItems.map(item => {
@@ -36,6 +41,7 @@ const List = (props) => {
         })
     }
 
+    // Sletter et spesifikt gjøremål
     function deleteItem(id) {
         setItems(existingItems => {
             return existingItems.filter(item => item.id !== id)
@@ -44,7 +50,7 @@ const List = (props) => {
 
     return(
         <div>
-            <h2>List {props.id}</h2>
+            <h2>{name}</h2>
             <h3>In progress</h3>
             {items.filter(item => !item.completed).length === 0 && "No in progress todos"}
             {items.filter(item => !item.completed).map(item => (

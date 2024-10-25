@@ -1,11 +1,10 @@
 
-const ListPick = (props) => {
-
+const ListPicker = (props) => {
     return(
-        <div>
+        <div className="list-picker">
             <button onClick={() => props.displayList(props.id)}>List {props.id}</button>
         </div>
     )
 }
 
-export default ListPick
+export default ListPicker
