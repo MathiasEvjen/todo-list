@@ -27,12 +27,14 @@ hr {
     display: flex;
     flex-direction: column;
     padding-left: 1rem;
+    overflow-y: auto;
 }
 
 .main {
     grid-column: 2 / 3;
     margin-left: 2rem;
     margin-right: 2rem;
+    overflow-y: auto;
 }
 
 .list-top {
