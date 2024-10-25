@@ -135,7 +135,7 @@ hr {
 
 .add-item-button:hover {
     cursor: pointer;
-    background-color: rgb(168, 168, 168);
+    background-color: rgb(143, 143, 143);
 }
 
 .completed-items .list-item {
