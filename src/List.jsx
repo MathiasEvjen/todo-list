@@ -6,14 +6,14 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 const List = (props) => {
     const [name, setName] = useState("List 1")
     const [items, setItems] = useState(() => {
-        const localValue = localStorage.getItem("ITEMS")
+        const localValue = localStorage.getItem(`ITEMS${props.id}`)
         if (localValue == null) return []
 
         return JSON.parse(localValue)
     })
 
     useEffect(() => {
-        localStorage.setItem("ITEMS", JSON.stringify(items))
+        localStorage.setItem(`ITEMS${props.id}`, JSON.stringify(items))
     }, [items])
 
     function addItem(text) {
@@ -44,7 +44,7 @@ const List = (props) => {
 
     return(
         <div>
-            <h2>{name}</h2>
+            <h2>List {props.id}</h2>
             <h3>In progress</h3>
             {items.filter(item => !item.completed).length === 0 && "No in progress todos"}
             {items.filter(item => !item.completed).map(item => (
