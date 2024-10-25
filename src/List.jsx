@@ -3,9 +3,7 @@ import ListItem from "./ListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const List = (props) => {
-    const [name, setName] = useState(`List ${props.id}`)  // State variabel for å holde listas navn
-    
+const List = (props) => {    
     // State variabel for å holde listens gjøremål som hentes fra localstorage
     const [items, setItems] = useState(() => {
         const localValue = localStorage.getItem(`ITEMS${props.id}`)
@@ -50,7 +48,17 @@ const List = (props) => {
 
     return(
         <div>
-            <h2>{name}</h2>
+            <div className="list-top">
+                <h2>{props.name}</h2>
+                <div>
+                    <input type="text" id="newName" placeholder="Write new name"></input>
+                    <button onClick={() => {
+                    const el = document.getElementById("newName")
+                    if (el.value != "") props.changeName(el.value, props.id);
+                    el.value = "";
+                    }}>Change name</button>
+                </div>
+            </div>
             <h3>In progress</h3>
             {items.filter(item => !item.completed).length === 0 && "No in progress todos"}
             {items.filter(item => !item.completed).map(item => (

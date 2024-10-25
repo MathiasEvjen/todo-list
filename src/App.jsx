@@ -34,12 +34,12 @@ function App() {
   // Oppretter ny liste og oppdaterer lists-variabel og listPicker variabel og viser den nye lista på skjermen
   function addList() {
     var thisId = lists.length + 1
-    setLists(exisstingLists => {
-      return [...exisstingLists, {id: thisId}]
+    setLists(existingLists => {
+      return [...existingLists, {id: thisId, name: `List ${thisId}`}]
     })
 
-    setListPicker(exisistingListpicks => {
-      return [...exisistingListpicks, {id: thisId}]
+    setListPicker(existingListpicks => {
+      return [...existingListpicks, {id: thisId, name: `List ${thisId}`}]
     })
 
     displayList(thisId)
@@ -51,15 +51,39 @@ function App() {
     setDisplay(id);
   }
 
+  // Endrer navnet på lista
+  function changeName(newName, id) {
+    setLists(existingLists => {
+      return existingLists.map(list => 
+        list.id === id ? { ...list, name: newName } : list
+    )});
+
+    setListPicker(existingLists => {
+      return existingLists.map(list =>
+        list.id === id ? { ...list, name: newName } : list 
+      )})
+  }
+
+  // Sletter valgt liste
+  function deleteList(id) {
+    setLists(existingLists => {
+      return existingLists.filter(list => list.id != id)
+    })
+
+    setListPicker(existingListpicks => {
+      return existingListpicks.filter(list => list.id != id)
+    })
+  } 
+
   return (
     <>
       <div className="wrapper">
         <div className="sidebar">
-          <Sidebar addList={addList} lists={listPicker} displayList={displayList}/>
+          <Sidebar addList={addList} lists={listPicker} deleteList={deleteList} displayList={displayList}/>
         </div>
         <div className="main">
           {lists.filter(list => list.id === display).map(list =>
-            <List id={list.id} key={list.id}/>
+            <List id={list.id} name={list.name} key={list.id} changeName={changeName}/>
           )}
         </div>
       </div>
