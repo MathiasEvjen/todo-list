@@ -26,6 +26,18 @@ const List = (props) => {
         })
     }
 
+    // Oppretter nytt gjøremål og legger i items-variabel
+    function addItemEnter(text, event) {
+        if (event.key === "Enter") {
+            event.target.value = ""
+            setItems(existingItems => {
+                return [
+                    ...existingItems, {text: text, id: Math.random(), completed: false}
+                ]
+            })
+        }
+    }
+
     // Setter et spesifikt gjøremål som fullført
     function complete(id, completed) {
         setItems(existingItems => {
@@ -51,7 +63,10 @@ const List = (props) => {
             <div className="list-top">
                 <h2>{props.name}</h2>
                 <div>
-                    <input type="text" id="newName" placeholder="Write new name"></input>
+                    <input  type="text" 
+                            id="newName" 
+                            onKeyDown={(e) => props.changeNameEnter(e.target.value, props.id, e)}
+                            placeholder="Write new name"></input>
                     <button onClick={() => {
                     const el = document.getElementById("newName")
                     if (el.value != "") props.changeName(el.value, props.id);
@@ -65,7 +80,11 @@ const List = (props) => {
                 <ListItem id={item.id} text={item.text} key={item.id} completed={item.completed} complete={complete} delete={deleteItem}/>
             ))}
             <div className="input">
-                <input id="itemInput" type="text" className="add-item" placeholder="Add an item"></input>
+                <input  id="itemInput" 
+                        type="text" 
+                        className="add-item" 
+                        onKeyDown={(e) => {addItemEnter(e.target.value, e)}}
+                        placeholder="Add an item"></input>
                 <button className="add-item-button" onClick={() => {
                     const el = document.getElementById("itemInput")
                     if (el.value != "") addItem(el.value);

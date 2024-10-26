@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 
 const ListPicker = (props) => {
-    const style = props.display === props.id ? "active" : "inactive"
+
+    const style = props.display === props.id ? "active" : "inactive"    // Setter bakgrunnsfargen om denne lista blir vist
 
     return(
         <div className="list-picker">

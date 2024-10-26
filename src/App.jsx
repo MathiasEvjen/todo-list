@@ -52,7 +52,6 @@ function App() {
   function displayList(id) {
     setDisplay(id);
     setHighlight(!highlight)
-    setListCount(c => c - 1)
   }
 
   // Endrer navnet på lista
@@ -66,6 +65,22 @@ function App() {
       return existingLists.map(list =>
         list.id === id ? { ...list, name: newName } : list 
       )})
+  }
+
+  // Endrer navn på lista
+  function changeNameEnter(newName, id, event) {
+    if (event.key === "Enter") {
+      event.target.value = ""
+      setLists(existingLists => {
+        return existingLists.map(list => 
+          list.id === id ? { ...list, name: newName } : list
+      )});
+  
+      setListPicker(existingLists => {
+        return existingLists.map(list =>
+          list.id === id ? { ...list, name: newName } : list 
+        )})
+    }
   }
 
   // Sletter valgt liste
@@ -101,7 +116,11 @@ function App() {
         </div>
         <div className="main">
           {lists.filter(list => list.id === display).map(list =>
-            <List id={list.id} name={list.name} key={list.id} changeName={changeName}/>
+            <List id={list.id} 
+                  name={list.name} 
+                  key={list.id} 
+                  changeNameEnter={changeNameEnter} 
+                  changeName={changeName}/>
           )}
         </div>
       </div>
