@@ -34,13 +34,13 @@ function App() {
 
   // Oppretter ny liste og oppdaterer lists-variabel og listPicker variabel og viser den nye lista på skjermen
   function addList() {
-    var thisId = listCount
+    var thisId = Math.random()
     setLists(existingLists => {
-      return [...existingLists, {id: thisId, name: `List ${thisId}`}]
+      return [...existingLists, {id: thisId, name: `List ${listCount}`}]
     })
 
     setListPicker(existingListpicks => {
-      return [...existingListpicks, {id: thisId, name: `List ${thisId}`}]
+      return [...existingListpicks, {id: thisId, name: `List ${listCount}`}]
     })
 
     setListCount(c => c + 1)
@@ -50,8 +50,9 @@ function App() {
 
   // Viser valgt liste på skjermen
   function displayList(id) {
-    console.log("Setter liste til nr. " + id)
     setDisplay(id);
+    setHighlight(!highlight)
+    setListCount(c => c - 1)
   }
 
   // Endrer navnet på lista
@@ -92,7 +93,11 @@ function App() {
     <>
       <div className="wrapper">
         <div className="sidebar">
-          <Sidebar addList={addList} lists={listPicker} deleteList={deleteList} displayList={displayList}/>
+          <Sidebar  addList={addList} 
+                    lists={listPicker} 
+                    display={display}
+                    deleteList={deleteList} 
+                    displayList={displayList}/>
         </div>
         <div className="main">
           {lists.filter(list => list.id === display).map(list =>

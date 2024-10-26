@@ -180,7 +180,7 @@ hr {
     border-radius: 10px;
     padding: 1rem;
     font-size: larger;
-    width: 12rem;
+    width: 60%;
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 3.5rem;
@@ -193,18 +193,40 @@ hr {
 
 .list-picker {
     display: flex;
-    border-top: 2px solid rgb(129, 129, 129);
+    border-top: 5px solid transparent;
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    background-color: transparent;
+}
+
+.list-picker .active {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(86, 80, 150);
+}
+
+.active button {
+    font-weight: bold;
+}
+
+.list-picker .inactive {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(38, 35, 71);
 }
 
 .list-picker button {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
     border: none;
     background-color: transparent;
     color: white;
     font-size: larger;
-    margin-left: 1rem;
+    padding-left: 1.5rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    padding-right: 2rem;
+    padding-right: 3.3rem;
 }
 
 .list-picker button:hover {
@@ -215,9 +237,8 @@ hr {
     background-color: rgb(52, 51, 112);
     color: rgb(204, 204, 204);
     border-radius: 5px;
-    max-height: 30px;
-    max-width: 40px;
-    margin-top: 2.2rem;
+    max-height: 35px;
+    max-width: 35px;
     padding: 0;
     border: none;
 }
@@ -229,5 +250,5 @@ hr {
 }
 
 .sidebar-bottom {
-    border-top: 2px solid rgb(129, 129, 129);
+    border-top: 5px solid transparent;
 }
