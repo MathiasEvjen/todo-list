@@ -7,8 +7,8 @@ function App() {
   const [listCount, setListCount] = useState(1) // State variabel som holder antall lister 
 
   // State variabel som holder knappene for å velge liste i sidebaren og henter fra local storage
-  const [listPicker, setListPicker] = useState(() => {
-    const localValue = localStorage.getItem("LISTPICKER")
+  const [listMenu, setListMenu] = useState(() => {
+    const localValue = localStorage.getItem("LISTMENU")
     if (localValue == null) return []
 
     return JSON.parse(localValue)
@@ -16,8 +16,8 @@ function App() {
 
   // Lagrer listPicker i local storage
   useEffect(() => {
-    localStorage.setItem("LISTPICKER", JSON.stringify(listPicker))
-  }, [listPicker])
+    localStorage.setItem("LISTMENU", JSON.stringify(listMenu))
+  }, [listMenu])
 
   // State variabel som holder listene i appen og henter fra local storage
   const [lists, setLists] = useState(() => {
@@ -39,8 +39,8 @@ function App() {
       return [...existingLists, {id: thisId, name: `List ${listCount}`}]
     })
 
-    setListPicker(existingListpicks => {
-      return [...existingListpicks, {id: thisId, name: `List ${listCount}`}]
+    setListMenu(existingMenu => {
+      return [...existingMenu, {id: thisId, name: `List ${listCount}`}]
     })
 
     setListCount(c => c + 1)
@@ -61,7 +61,7 @@ function App() {
         list.id === id ? { ...list, name: newName } : list
     )});
 
-    setListPicker(existingLists => {
+    setListMenu(existingLists => {
       return existingLists.map(list =>
         list.id === id ? { ...list, name: newName } : list 
       )})
@@ -76,7 +76,7 @@ function App() {
           list.id === id ? { ...list, name: newName } : list
       )});
   
-      setListPicker(existingLists => {
+      setListMenu(existingLists => {
         return existingLists.map(list =>
           list.id === id ? { ...list, name: newName } : list 
         )})
@@ -93,12 +93,12 @@ function App() {
       return updatedList
     })
 
-    setListPicker(existingListpicks => {
-      const updatedListPicker = existingListpicks.filter(list => list.id != id)
+    setListMenu(existingMenu => {
+      const updatedListMenu = existingMenu.filter(list => list.id != id)
 
-      localStorage.setItem("LISTPICKER", JSON.stringify(updatedListPicker))
+      localStorage.setItem("LISTMENU", JSON.stringify(updatedListMenu))
 
-      return updatedListPicker
+      return updatedListMenu
     })
 
     localStorage.removeItem(`ITEMS${id}`)
@@ -109,7 +109,7 @@ function App() {
       <div className="wrapper">
         <div className="sidebar">
           <Sidebar  addList={addList} 
-                    lists={listPicker} 
+                    lists={listMenu} 
                     display={display}
                     deleteList={deleteList} 
                     displayList={displayList}/>
