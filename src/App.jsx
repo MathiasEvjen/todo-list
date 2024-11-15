@@ -51,7 +51,6 @@ function App() {
   // Viser valgt liste på skjermen
   function displayList(id) {
     setDisplay(id);
-    setHighlight(!highlight)
   }
 
   // Endrer navnet på lista

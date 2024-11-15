@@ -70,28 +70,10 @@ hr {
     font-size: 1.3rem;
 }
 
-.list-item {
-    display: flex;
-    flex-direction: row;
-    border: 4px solid rgb(150, 71, 6);
-    border-radius: 5px;
-    background-color: rgba(243, 123, 25, 0.753);
-    padding: 0.5rem;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-}
-
-.list-item p {
+.item-text {
     margin: 0;
     color: rgb(48, 48, 48);
     font-weight: bold;
-}
-
-.list-item input[type="checkbox"] {
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    accent-color: #38d845;
 }
 
 .content {
@@ -103,17 +85,101 @@ hr {
     flex-direction: column;
 }
 
-.list-item .delete-button {
+
+/* Low priority list items */ 
+.list-item-low {
+    display: flex;
+    flex-direction: row;
+    border: 4px solid rgba(13, 126, 13, 0.521);
+    border-radius: 5px;
+    background-color: rgba(21, 211, 21, 0.829);
+    padding: 0.5rem;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.list-item-low .delete-button {
+    border-radius: 5px;
+    border: none;
+    color: rgb(202, 202, 202);
+    background-color: rgba(21, 133, 17, 0.753);
+}
+
+.list-item-low .delete-button:hover {
+    color: hsl(0, 100%, 50%);
+    cursor: pointer;
+    background-color: rgba(27, 99, 17, 0.767);
+}
+
+.list-item-low input[type="checkbox"] {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}
+
+
+/* Medium priority list items */
+.list-item-medium {
+    display: flex;
+    flex-direction: row;
+    border: 4px solid rgb(150, 71, 6);
+    border-radius: 5px;
+    background-color: rgba(243, 123, 25, 0.753);
+    padding: 0.5rem;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.list-item-medium .delete-button {
     border-radius: 5px;
     border: none;
     color: rgb(202, 202, 202);
     background-color: rgba(179, 83, 4, 0.753);
 }
 
-.list-item .delete-button:hover {
+.list-item-medium .delete-button:hover {
     color: hsl(0, 100%, 50%);
     cursor: pointer;
     background-color: rgba(209, 90, 11, 0.767);
+}
+
+.list-item-medium input[type="checkbox"] {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}
+
+
+/* High priority list items*/
+
+.list-item-high {
+    display: flex;
+    flex-direction: row;
+    border: 4px solid rgba(150, 6, 6, 0.753);
+    border-radius: 5px;
+    background-color: rgba(255, 52, 25, 0.712);
+    padding: 0.5rem;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.list-item-high .delete-button {
+    border-radius: 5px;
+    border: none;
+    color: rgb(202, 202, 202);
+    background-color: rgba(133, 5, 5, 0.753);
+}
+
+.list-item-high .delete-button:hover {
+    color: hsl(0, 100%, 50%);
+    cursor: pointer;
+    background-color: rgba(119, 13, 13, 0.767);
+}
+
+.list-item-high input[type="checkbox"] {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
 }
 
 .input {
@@ -136,7 +202,7 @@ hr {
     border-radius: 5px;
     width: 34px;
     background-color: rgb(77, 76, 105);
-    color: rgb(202, 202, 202);
+    color: rgb(230, 230, 230);
     font-size: 1.2rem;
 }
 
@@ -145,15 +211,44 @@ hr {
     background-color: rgb(63, 65, 92);
 }
 
+.priority {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+    height: 2.5rem;
+}
+
+.priority-button {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(77, 76, 105);
+    color: rgb(230, 230, 230);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+.priority-button:hover {
+    cursor: pointer;
+    background-color: rgb(63, 65, 92);
+}
+
 .completed-items .list-item {
     display: flex;
     flex-direction: row;
-    border: 4px solid rgba(175, 74, 15, 0.863);
+    border: 4px solid rgba(71, 70, 67, 0.863);
     border-radius: 5px;
-    background-color: rgba(158, 63, 0, 0.808);
+    background-color: rgba(130, 129, 134, 0.808);
     padding: 0.5rem;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+.list-item input[type="checkbox"] {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    accent-color: #38d845;
 }
 
 .completed-items .add-item p {
@@ -166,13 +261,13 @@ hr {
     border-radius: 5px;
     border: none;
     color: rgb(185, 185, 185);
-    background-color: rgb(122, 50, 8);
+    background-color: rgb(82, 82, 82);
 }
 
 .completed-items .delete-button:hover {
     color: hsl(0, 100%, 50%);
     cursor: pointer;
-    background-color: rgba(151, 55, 16, 0.849);
+    background-color: rgba(65, 65, 65, 0.849);
 }
 
 .add-list {

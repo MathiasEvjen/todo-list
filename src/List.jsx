@@ -17,25 +17,36 @@ const List = (props) => {
         localStorage.setItem(`ITEMS${props.id}`, JSON.stringify(items))
     }, [items])
 
-    // Oppretter nytt gjøremål og legger i items-variabel
-    function addItem(text) {
-        setItems(existingItems => {
-            return [
-                ...existingItems, {text: text, id: Math.random(), completed: false}
-            ]
-        })
+    const [priority, setPriority] = useState("low");    // Lagrer prioriteten til gjøremål som skal legges til
+
+    // Endrer prioriteten til gjøremål
+    function changePriority(newPriority) {
+        setPriority(newPriority)
     }
 
-    // Oppretter nytt gjøremål og legger i items-variabel
-    function addItemEnter(text, event) {
+    // Oppretter nytt gjøremål og legger i items-variabel og resetter prioritet
+    function addItem(text, prio) {
+        setItems(existingItems => {
+            return [
+                ...existingItems, {text: text, id: Math.random(), completed: false, priority: prio}
+            ]
+        })
+
+        changePriority("low")
+    }
+
+    // Oppretter nytt gjøremål og legger i items-variabel og resetter prioritet
+    function addItemEnter(text, prio, event) {
         if (event.key === "Enter") {
             event.target.value = ""
             setItems(existingItems => {
                 return [
-                    ...existingItems, {text: text, id: Math.random(), completed: false}
+                    ...existingItems, {text: text, id: Math.random(), completed: false, priority: prio}
                 ]
             })
-        }
+
+            changePriority("low")
+        }        
     }
 
     // Setter et spesifikt gjøremål som fullført
@@ -76,20 +87,62 @@ const List = (props) => {
             </div>
             <h3>In progress</h3>
             {items.filter(item => !item.completed).length === 0 && "No in progress todos"}
-            {items.filter(item => !item.completed).map(item => (
-                <ListItem id={item.id} text={item.text} key={item.id} completed={item.completed} complete={complete} delete={deleteItem}/>
+            {items.filter(item => !item.completed && item.priority === "high").map(item => (
+                <ListItem   id={item.id} 
+                            text={item.text} 
+                            key={item.id} 
+                            completed={item.completed} 
+                            itemPriority={item.priority}
+                            complete={complete} 
+                            delete={deleteItem}/>
+            ))}
+            {items.filter(item => !item.completed && item.priority === "medium").map(item => (
+                <ListItem   id={item.id} 
+                            text={item.text} 
+                            key={item.id} 
+                            completed={item.completed} 
+                            itemPriority={item.priority}
+                            complete={complete} 
+                            delete={deleteItem}/>
+            ))}
+            {items.filter(item => !item.completed && item.priority === "low").map(item => (
+                <ListItem   id={item.id} 
+                            text={item.text} 
+                            key={item.id} 
+                            completed={item.completed} 
+                            itemPriority={item.priority}
+                            complete={complete} 
+                            delete={deleteItem}/>
             ))}
             <div className="input">
                 <input  id="itemInput" 
                         type="text" 
                         className="add-item" 
-                        onKeyDown={(e) => {addItemEnter(e.target.value, e)}}
+                        onKeyDown={(e) => {addItemEnter(e.target.value, priority, e)}}
                         placeholder="Add an item"></input>
                 <button className="add-item-button" onClick={() => {
                     const el = document.getElementById("itemInput")
-                    if (el.value != "") addItem(el.value);
+                    if (el.value != "") addItem(el.value, priority);
                     el.value = "";
                     }}><FontAwesomeIcon icon={faPlus}/></button>
+            </div>
+            <div className="priority">
+                <p>Priority:</p>
+                <button className="priority-button" 
+                        value="low"
+                        style={priority === "low" ? {backgroundColor: "rgb(59, 58, 78)"} : {filter: "brightness(1)"}}
+                        onClick={(e) => {changePriority(e.target.value)}}
+                        >Low</button>
+                <button className="priority-button" 
+                        value="medium"
+                        style={priority === "medium" ? {backgroundColor: "rgb(59, 58, 78)"} : {filter: "brightness(1)"}}
+                        onClick={(e) => {changePriority(e.target.value)}}
+                        >Medium</button>
+                <button className="priority-button" 
+                        value="high" 
+                        style={priority === "high" ? {backgroundColor: "rgb(59, 58, 78)"} : {filter: "brightness(1)"}}
+                        onClick={(e) => {changePriority(e.target.value)}}
+                        >High</button>
             </div>
             <hr/>
             <div className="completed-items">
